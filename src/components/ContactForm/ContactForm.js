@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import s from './ContactForm.module.css';
 
 class ContactForm extends Component {
   state = {
@@ -24,9 +25,10 @@ class ContactForm extends Component {
     const { name, number } = this.state;
 
     return (
-      <form onSubmit={this.handleSubmit}>
-        <p>Name</p>
+      <form className={s.form} onSubmit={this.handleSubmit}>
+        <p className={s.text}>Name</p>
         <input
+          className={s.input}
           type="text"
           name="name"
           value={name}
@@ -35,8 +37,9 @@ class ContactForm extends Component {
           title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
           required
         />
-        <p>Number</p>
+        <p className={s.text}>Number</p>
         <input
+          className={s.input}
           type="tel"
           name="number"
           value={number}
@@ -45,7 +48,9 @@ class ContactForm extends Component {
           title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
           required
         />
-        <button type="submit">Add contact</button>
+        <button className={s.btn} type="submit">
+          Add contact
+        </button>
       </form>
     );
   }
