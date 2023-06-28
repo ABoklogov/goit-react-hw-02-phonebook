@@ -1,23 +1,27 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import { Component } from 'react';
 import s from './ContactForm.module.css';
 
-class ContactForm extends Component {
+interface Props {
+  onSubmit: ({ name, number }: State) => void;
+};
+
+interface State {
+  name: string;
+  number: string;
+};
+
+class ContactForm extends Component<Props, State> {
   state = {
     name: '',
     number: '',
   };
 
-  static propTypes = {
-    onSubmit: PropTypes.func.isRequired,
-  };
-
-  handleNameChenge = e => {
+  handleNameChenge = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.currentTarget;
-    this.setState({ [name]: value });
+    this.setState((state) => ({ ...state, [name]: value }));
   };
 
-  handleSubmit = e => {
+  handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     this.props.onSubmit(this.state);
@@ -60,7 +64,7 @@ class ContactForm extends Component {
         </button>
       </form>
     );
-  }
-}
+  };
+};
 
 export default ContactForm;

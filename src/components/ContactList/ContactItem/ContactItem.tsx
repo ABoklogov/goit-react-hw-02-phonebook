@@ -1,7 +1,13 @@
-import PropTypes from 'prop-types';
 import s from './ContactItem.module.css';
 
-const ContactItem = ({ id, name, number, onDeleteContact }) => {
+interface Props {
+  id: string;
+  name: string;
+  number: string;
+  onDeleteContact: (idContact: string) => void;
+};
+
+const ContactItem = ({ id, name, number, onDeleteContact }: Props) => {
   return (
     <>
       <p className={s.contactName}>{name}:</p>
@@ -11,13 +17,6 @@ const ContactItem = ({ id, name, number, onDeleteContact }) => {
       </button>
     </>
   );
-};
-
-ContactItem.propTypes = {
-  id: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  number: PropTypes.string.isRequired,
-  onDeleteContact: PropTypes.func.isRequired,
 };
 
 export default ContactItem;
